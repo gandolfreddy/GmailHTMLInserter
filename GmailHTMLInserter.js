@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         Gmail HTML 填寫工具
-// @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  A simple Gmail HTML inserter
-// @author       You
+// @license      GPL
+// @source       https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/GmailHTMLInserter.js
+// @namespace    https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/GmailHTMLInserter.js
+// @author       Gandolfreddy
 // @match        https://mail.google.com/mail/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=hibbard.eu
-// @grant        none
 // ==/UserScript==
 
 
