@@ -3,8 +3,8 @@
 // @version      0.1
 // @description  A simple Gmail HTML inserter
 // @license      GPL
-// @source       https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/GmailHTMLInserter.js
-// @namespace    https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/GmailHTMLInserter.js
+// @source       https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/src/GmailHTMLInserter.js
+// @namespace    https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/src/GmailHTMLInserter.js
 // @author       Gandolfreddy
 // @match        https://mail.google.com/mail/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=hibbard.eu
