@@ -15,6 +15,8 @@
 (function () {
     'use strict';
 
+    const VERSION = '0.2.1';
+
     const styleSheet = `
     /* 自定義 CSS */
     .html-inserter-btn {
@@ -234,7 +236,7 @@
     }
 
     // Your code here...
-    alert("Gmail HTML 填寫工具 v0.2.0 已載入");
+    alert(`Gmail HTML 填寫工具 v${VERSION} 已載入`);
 
     const body = document.querySelector('body');
     // 郵件撰寫視窗遮罩
