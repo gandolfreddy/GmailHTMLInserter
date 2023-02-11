@@ -1,13 +1,16 @@
 // ==UserScript==
 // @name         Gmail HTML 填寫工具
-// @version      0.1
+// @version      0.2.0
 // @description  A simple Gmail HTML inserter
 // @license      GPL
+// @updateURL    https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/src/GmailHTMLInserter.js
+// @downloadURL  https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/src/GmailHTMLInserter.js
 // @source       https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/src/GmailHTMLInserter.js
 // @namespace    https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/src/GmailHTMLInserter.js
 // @author       Gandolfreddy
 // @match        https://mail.google.com/mail/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=hibbard.eu
+// @run-at       document-start
 // ==/UserScript==
 
 
@@ -233,7 +236,7 @@ window.addEventListener("load", function (event) {
     }
 
     // Your code here...
-    alert("Gmail HTML 填寫工具");
+    alert("Gmail HTML 填寫工具 v0.2.0 已載入");
 
     const body = document.querySelector('body');
     // 郵件撰寫視窗遮罩
@@ -258,8 +261,5 @@ window.addEventListener("load", function (event) {
 
         // Start observing the target node for configured mutations
         bodyObserver.observe(body, config);
-
-        // Later, you can stop observing
-        // bodyObserver.disconnect();
     }
 });
