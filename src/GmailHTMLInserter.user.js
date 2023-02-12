@@ -65,7 +65,7 @@
     .html-inserter-editor-title {
         width: 100%;
         height: 35px;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
 
         background-color: #f2f6fc;
         border-radius: 5px 5px 0px 0px;
@@ -78,7 +78,7 @@
     .close-btn {
         border: 0px;
         border-radius: 2px;
-        margin-right: 10px;
+        margin-left: 20px;
 
         font-size: 20px;
         font-family: consolas;
