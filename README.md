@@ -1,4 +1,4 @@
-# GmailHTMLInserter
+# Gmail HTML 填寫工具
 
 A simple Gmail HTML inserter
 
