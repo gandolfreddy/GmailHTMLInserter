@@ -25,6 +25,7 @@
         border: 0px;
         border-radius: 5px;
         box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+        margin-left: 20px;
     }
 
     .html-inserter-btn:hover{
@@ -78,7 +79,7 @@
     .close-btn {
         border: 0px;
         border-radius: 2px;
-        margin-left: 20px;
+        margin-right: 10px;
 
         font-size: 20px;
         font-family: consolas;
@@ -174,7 +175,7 @@
                     const HTMLInserterBtn = document.createElement('button');
                     HTMLInserterBtn.innerText = '</>';
                     HTMLInserterBtn.className = 'html-inserter-btn';
-                    tds[tds.length - 1].insertBefore(HTMLInserterBtn, tds[tds.length - 1].querySelector('div'));
+                    tds[tds.length - 2].appendChild(HTMLInserterBtn);
 
                     const gmailContent = document.querySelector('.gmail_default');
 
