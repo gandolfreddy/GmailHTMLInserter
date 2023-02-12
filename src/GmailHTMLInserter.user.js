@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Gmail HTML 填寫工具
-// @version      0.2.2
+// @version      0.2.3
 // @description  A simple Gmail HTML inserter
 // @license      GPL
 // @source       https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/src/GmailHTMLInserter.js
@@ -15,7 +15,7 @@
 (function () {
     'use strict';
 
-    const VERSION = '0.2.2';
+    const VERSION = '0.2.3';
 
     const styleSheet = `
     /* 自定義 CSS */
@@ -227,6 +227,7 @@
                     sendBtn.addEventListener('click', function () {
                         HTMLInserterMask.style.visibility = 'hidden';
                         gmailContent.innerHTML = HTMLContent.value + '';
+                        HTMLContent.value = '';
                     });
                 }
             }
@@ -234,6 +235,7 @@
 
 
         gmailEditorMaskObserver.observe(observingTarget, config);
+        gmailEditorMaskObserver.disconnect();
     }
 
     // Your code here...
@@ -262,5 +264,6 @@
 
         // Start observing the target node for configured mutations
         bodyObserver.observe(body, config);
+        bodyObserver.disconnect();
     }
 })();
