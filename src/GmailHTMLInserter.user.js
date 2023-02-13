@@ -237,7 +237,7 @@
 
                     insertBtn.addEventListener('click', function () {
                         const customizedContent = activeEditorFrame.querySelector('[role="textbox"]').querySelector('.customized-content');
-                        customizedContent.innerHTML = HTMLContent.value + '';
+                        customizedContent.innerHTML = HTMLContent.value;
                         HTMLContent.value = '';
                         HTMLInserterMask.style.visibility = 'hidden';
                     });
