@@ -162,7 +162,11 @@
             for (const mutation of mutationList) {
                 if (mutation.type === 'childList' && mutation.target.classList.contains('aSt') && mutation.target.innerHTML) {
                     // locate gmail editor frame
-                    const gmailEditorToolBar = document.querySelector("tr.btC");
+                    const gmailEditorToolBars = document.querySelector("tr.btC");
+                    for (let gmailEditorToolBar of gmailEditorToolBars) {
+                        console.log(gmailEditorToolBar);
+                    }
+                    const gmailEditorToolBar = gmailEditorToolBars[0];
                     const tds = gmailEditorToolBar.querySelectorAll("td");
 
                     // insert btn fo inserting html next to delete btn
