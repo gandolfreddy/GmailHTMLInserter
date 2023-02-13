@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Gmail HTML 填寫工具
-// @version      0.2.3
+// @version      0.2.4
 // @description  A simple Gmail HTML inserter
 // @license      GPL
 // @source       https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/src/GmailHTMLInserter.js
@@ -15,7 +15,7 @@
 (function () {
     'use strict';
 
-    const VERSION = '0.2.3';
+    const VERSION = '0.2.4';
 
     const styleSheet = `
     /* 自定義 CSS */
@@ -155,18 +155,12 @@
     (document.head || document.documentElement).appendChild(s);
 
 
-    // Options for the observer (which mutations to observe)
-    const config = { attributes: true, childList: true, subtree: true };
-
     // Observer for gmail editor mask's change
     function gmailEditorMaskObserver(observingTarget, config) {
         // Observing the .aSs target
         const gmailEditorMaskObserver = new MutationObserver((mutationList, observer) => {
             for (const mutation of mutationList) {
                 if (mutation.type === 'childList' && mutation.target.classList.contains('aSt') && mutation.target.innerHTML) {
-                    // console.log(mutation.target);
-                    // console.log('A child node has been added or removed.');
-
                     // locate gmail editor frame
                     const gmailEditorToolBar = document.querySelector("tr.btC");
                     const tds = gmailEditorToolBar.querySelectorAll("td");
@@ -235,13 +229,17 @@
 
 
         gmailEditorMaskObserver.observe(observingTarget, config);
-        gmailEditorMaskObserver.disconnect();
     }
+
 
     // Your code here...
     alert(`Gmail HTML 填寫工具 v${VERSION} 已載入`);
 
+    // Options for the observer (which mutations to observe)
+    const config = { attributes: true, childList: true, subtree: true };
+
     const body = document.querySelector('body');
+
     // 郵件撰寫視窗遮罩
     const gmailEditorMask = document.querySelector("body > div.aSs");
 
@@ -253,9 +251,6 @@
         const bodyObserver = new MutationObserver((mutationList, observer) => {
             for (const mutation of mutationList) {
                 if (mutation.type === 'childList' && mutation.target.classList.contains('aSs')) {
-                    // console.log(mutation.target);
-                    // console.log('A child node has been added or removed.');
-
                     // Observing the .aSs target
                     gmailEditorMaskObserver(mutation.target, config);
                 }
@@ -264,6 +259,5 @@
 
         // Start observing the target node for configured mutations
         bodyObserver.observe(body, config);
-        bodyObserver.disconnect();
     }
 })();
