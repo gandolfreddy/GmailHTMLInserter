@@ -162,7 +162,7 @@
             for (const mutation of mutationList) {
                 if (mutation.type === 'childList' && mutation.target.classList.contains('aSt') && mutation.target.innerHTML) {
                     // locate gmail editor frame
-                    const gmailEditorToolBars = document.querySelector("tr.btC");
+                    const gmailEditorToolBars = document.querySelectorAll("tr.btC");
                     for (let gmailEditorToolBar of gmailEditorToolBars) {
                         console.log(gmailEditorToolBar);
                     }
