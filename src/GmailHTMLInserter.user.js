@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Gmail HTML 填寫工具
-// @version      0.2.6
+// @version      0.2.7
 // @description  A simple Gmail HTML inserter
 // @license      GPL
 // @source       https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/src/GmailHTMLInserter.js
@@ -15,7 +15,7 @@
 (function () {
     'use strict';
 
-    const VERSION = '0.2.6';
+    const VERSION = '0.2.7';
 
     const styleSheet = `
     /* 自定義 CSS */
@@ -166,6 +166,7 @@
                     const tds = gmailEditorToolBar.querySelectorAll("td");
 
                     // insert btn fo inserting html next to delete btn
+                    if (tds[tds.length - 2].querySelector('.html-inserter-btn')) return;
                     const HTMLInserterBtn = document.createElement('button');
                     HTMLInserterBtn.innerText = '</>';
                     HTMLInserterBtn.className = 'html-inserter-btn';
