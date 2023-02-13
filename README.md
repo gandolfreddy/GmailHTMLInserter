@@ -13,6 +13,7 @@ A simple Gmail HTML inserter
 ## 更新流程
 
 1. 點擊[此連結](https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/src/GmailHTMLInserter.user.js)，即可啟動 Tampermonkey 擴充功能頁面，按下「更新」後即可自動更新完畢。
+  ![image](https://user-images.githubusercontent.com/22278312/218531884-085ea33e-db99-4692-be6d-84c8c022a6b8.png)
 
 ## 操作畫面示範
 
