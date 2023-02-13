@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Gmail HTML 填寫工具
-// @version      0.3.2
+// @version      0.3.3
 // @description  A simple Gmail HTML inserter
 // @license      GPL
 // @source       https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/src/GmailHTMLInserter.js
@@ -16,7 +16,7 @@
     'use strict';
 
     /* Current version */
-    const VERSION = '0.3.2';
+    const VERSION = '0.3.3';
 
     /* Create style sheet */
     const styleSheet = `
@@ -220,12 +220,13 @@
                         HTMLInserterMask.style.visibility = 'inherit';
 
                         const gmailContent = activeEditorFrame.querySelector('[role="textbox"]');
-                        if (gmailContent.querySelector('.customized-content')) {
-                            HTMLContent.value = gmailContent.querySelector('.customized-content').innerHTML;
+                        if (gmailContent.querySelector('div').id.includes('customized-content')) {
+                            gmailContent.querySelector('div').id = 'customized-content';
+                            HTMLContent.value = gmailContent.querySelector('#customized-content').innerHTML;
                         } else {
                             /* Create a div tag prepared prepending to textbox for customized content */
                             const customizedContent = document.createElement('div');
-                            customizedContent.className = 'customized-content';
+                            customizedContent.id = 'customized-content';
                             gmailContent.prepend(customizedContent);
                             HTMLContent.value = '';
                         }
@@ -237,7 +238,7 @@
                     });
 
                     insertBtn.addEventListener('click', function () {
-                        const customizedContent = activeEditorFrame.querySelector('[role="textbox"]').querySelector('.customized-content');
+                        const customizedContent = activeEditorFrame.querySelector('[role="textbox"]').querySelector('#customized-content');
                         customizedContent.innerHTML = HTMLContent.value;
                         HTMLContent.value = '';
                         HTMLInserterMask.style.visibility = 'hidden';
