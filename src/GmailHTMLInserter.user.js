@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Gmail HTML 填寫工具
-// @version      0.2.5
+// @version      0.2.6
 // @description  A simple Gmail HTML inserter
 // @license      GPL
 // @source       https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/src/GmailHTMLInserter.js
@@ -15,7 +15,7 @@
 (function () {
     'use strict';
 
-    const VERSION = '0.2.5';
+    const VERSION = '0.2.6';
 
     const styleSheet = `
     /* 自定義 CSS */
@@ -189,7 +189,6 @@
                     HTMLContent.className = 'html-content';
                     HTMLContent.name = "HTMLContent";
                     HTMLContent.placeholder = '在此填入 HTML 內容';
-                    HTMLContent.value = gmailContent.innerHTML;
 
                     const HTMLInserterEditorFooter = document.createElement('div');
                     HTMLInserterEditorFooter.className = 'html-inserter-editor-footer';
