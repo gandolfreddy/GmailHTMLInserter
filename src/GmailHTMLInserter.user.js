@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Gmail HTML 填寫工具
-// @version      0.3.0
+// @version      0.3.1
 // @description  A simple Gmail HTML inserter
 // @license      GPL
 // @source       https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/src/GmailHTMLInserter.js
@@ -16,7 +16,7 @@
     'use strict';
 
     /* Current version */
-    const VERSION = '0.3.0';
+    const VERSION = '0.3.1';
 
     /* Create style sheet */
     const styleSheet = `
@@ -173,7 +173,7 @@
                     }
 
                     /* Insert btn into gmail editor */
-                    const tds = activeEditorFrame.querySelector('tr.btC').querySelectorAll("td");
+                    const tds = activeEditorFrame.querySelector('tr.btC').querySelectorAll('td');
                     if (tds[tds.length - 2].querySelector('.html-inserter-btn')) return;
                     const HTMLInserterBtn = document.createElement('button');
                     HTMLInserterBtn.innerText = '</>';
@@ -188,7 +188,7 @@
 
                     const HTMLInserterEditorTitle = document.createElement('div');
                     HTMLInserterEditorTitle.className = 'html-inserter-editor-title';
-                    const closeBtn = document.createElement("button");
+                    const closeBtn = document.createElement('button');
                     closeBtn.innerHTML = `×`;
                     closeBtn.className = 'close-btn';
 
@@ -196,20 +196,20 @@
                     HTMLInserterEditorContainer.className = 'html-inserter-editor-container';
                     const HTMLContent = document.createElement('textarea');
                     HTMLContent.className = 'html-content';
-                    HTMLContent.name = "HTMLContent";
+                    HTMLContent.name = 'HTMLContent';
                     HTMLContent.placeholder = '在此填入 HTML 內容';
 
                     const HTMLInserterEditorFooter = document.createElement('div');
                     HTMLInserterEditorFooter.className = 'html-inserter-editor-footer';
-                    const sendBtn = document.createElement("button");
-                    sendBtn.innerHTML = `插入 HTML`;
-                    sendBtn.className = 'send-btn';
+                    const insertBtn = document.createElement('button');
+                    insertBtn.innerHTML = `插入 HTML`;
+                    insertBtn.className = 'send-btn';
 
                     HTMLInserterEditorTitle.appendChild(closeBtn);
                     HTMLInserterEditor.appendChild(HTMLInserterEditorTitle);
                     HTMLInserterEditorContainer.appendChild(HTMLContent);
                     HTMLInserterEditor.appendChild(HTMLInserterEditorContainer);
-                    HTMLInserterEditorFooter.appendChild(sendBtn);
+                    HTMLInserterEditorFooter.appendChild(insertBtn);
                     HTMLInserterEditor.appendChild(HTMLInserterEditorFooter);
                     HTMLInserterMask.appendChild(HTMLInserterEditor);
                     body.appendChild(HTMLInserterMask);
@@ -217,7 +217,17 @@
                     /* Register event listeners */
                     HTMLInserterBtn.addEventListener('click', function () {
                         HTMLInserterMask.style.visibility = 'inherit';
-                        HTMLContent.value = activeEditorFrame.querySelector('.gmail_default').innerHTML;
+
+                        const gmailContent = activeEditorFrame.querySelector('[role="textbox"]');
+                        if (gmailContent.querySelector('.customized-content')) {
+                            HTMLContent.value = gmailContent.querySelector('.customized-content').innerHTML;
+                        } else {
+                            /* Create a div tag prepared prepending to textbox for customized content */
+                            const customizedContent = document.createElement('div');
+                            customizedContent.className = 'customized-content';
+                            gmailContent.prepend(customizedContent);
+                            HTMLContent.value = '';
+                        }
                     });
 
                     closeBtn.addEventListener('click', function () {
@@ -225,8 +235,9 @@
                         HTMLInserterMask.style.visibility = 'hidden';
                     });
 
-                    sendBtn.addEventListener('click', function () {
-                        activeEditorFrame.querySelector('.gmail_default').innerHTML = HTMLContent.value + '';
+                    insertBtn.addEventListener('click', function () {
+                        const customizedContent = activeEditorFrame.querySelector('[role="textbox"]').querySelector('.customized-content');
+                        customizedContent.innerHTML = HTMLContent.value + '';
                         HTMLContent.value = '';
                         HTMLInserterMask.style.visibility = 'hidden';
                     });
@@ -248,7 +259,7 @@
     const body = document.querySelector('body');
 
     /* Locate gmail editor mask */
-    const gmailEditorMask = document.querySelector(".aSs");
+    const gmailEditorMask = document.querySelector('.aSs');
 
     if (gmailEditorMask) {
         /* Observing the .aSs target */
