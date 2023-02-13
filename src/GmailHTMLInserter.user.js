@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Gmail HTML 填寫工具
-// @version      0.2.8
+// @version      0.2.9
 // @description  A simple Gmail HTML inserter
 // @license      GPL
 // @source       https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/src/GmailHTMLInserter.js
@@ -15,10 +15,11 @@
 (function () {
     'use strict';
 
-    const VERSION = '0.2.8';
+    /* Current version */
+    const VERSION = '0.2.9';
 
+    /* Create style sheet */
     const styleSheet = `
-    /* 自定義 CSS */
     .html-inserter-btn {
         color: white;
         background-color: #219d85;
@@ -148,22 +149,21 @@
         cursor:pointer;
     }
     `;
-
     const s = document.createElement('style');
     s.type = 'text/css';
     s.innerHTML = styleSheet;
     (document.head || document.documentElement).appendChild(s);
 
-
-    // Observer for gmail editor mask's change
+    /* Observer for gmail editor mask's change */
     function gmailEditorMaskObserver(observingTarget, config) {
-        // Observing the .aSs target
+        /* Observing the .aSs target */
         const gmailEditorMaskObserver = new MutationObserver((mutationList, observer) => {
             for (const mutation of mutationList) {
-                if (mutation.type === 'childList' && mutation.target.classList.contains('aSt') && mutation.target.innerHTML) {
-                    // locate gmail editor frame
+                if (mutation.type === 'childList' &&
+                    mutation.target.classList.contains('aSt') &&
+                    mutation.target.innerHTML) {
+                    /* Locate current active gmail editor frame */
                     const activeEditorFrames = document.querySelectorAll('.aVN');
-                    console.log(activeEditorFrames);
                     let activeEditorFrame;
                     for (let frame of activeEditorFrames) {
                         if (frame.style.display !== 'none') {
@@ -172,17 +172,15 @@
                         }
                     }
 
-                    const gmailEditorToolBar = activeEditorFrame.querySelector('tr.btC');
-                    const tds = gmailEditorToolBar.querySelectorAll("td");
-
-                    // insert btn fo inserting html next to delete btn
+                    /* Insert btn into gmail editor */
+                    const tds = activeEditorFrame.querySelector('tr.btC').querySelectorAll("td");
                     if (tds[tds.length - 2].querySelector('.html-inserter-btn')) return;
                     const HTMLInserterBtn = document.createElement('button');
                     HTMLInserterBtn.innerText = '</>';
                     HTMLInserterBtn.className = 'html-inserter-btn';
                     tds[tds.length - 2].appendChild(HTMLInserterBtn);
 
-                    // create html inserter UI
+                    /* Create html inserter UI */
                     const HTMLInserterMask = document.createElement('div');
                     HTMLInserterMask.className = 'html-inserter-mask';
                     const HTMLInserterEditor = document.createElement('div');
@@ -216,11 +214,10 @@
                     HTMLInserterMask.appendChild(HTMLInserterEditor);
                     body.appendChild(HTMLInserterMask);
 
+                    /* Register event listeners */
                     HTMLInserterBtn.addEventListener('click', function () {
                         HTMLInserterMask.style.visibility = 'inherit';
-
-                        const gmailContent = document.querySelector('.gmail_default');
-                        HTMLContent.value = gmailContent.innerHTML;
+                        HTMLContent.value = activeEditorFrame.querySelector('.gmail_default').innerHTML;
                     });
 
                     closeBtn.addEventListener('click', function () {
@@ -229,8 +226,7 @@
                     });
 
                     sendBtn.addEventListener('click', function () {
-                        const gmailContent = document.querySelector('.gmail_default');
-                        gmailContent.innerHTML = HTMLContent.value + '';
+                        activeEditorFrame.querySelector('.gmail_default').innerHTML = HTMLContent.value + '';
                         HTMLContent.value = '';
                         HTMLInserterMask.style.visibility = 'hidden';
                     });
@@ -238,37 +234,37 @@
             }
         });
 
-
+        /* Start observing the target node for configured mutations */
         gmailEditorMaskObserver.observe(observingTarget, config);
     }
 
 
-    // Your code here...
+    /* Hint for user */
     alert(`Gmail HTML 填寫工具 v${VERSION} 已載入`);
 
-    // Options for the observer (which mutations to observe)
+    /* Options for the observer (which mutations to observe) */
     const config = { attributes: true, childList: true, subtree: true };
 
     const body = document.querySelector('body');
 
-    // 郵件撰寫視窗遮罩
-    const gmailEditorMask = document.querySelector("body > div.aSs");
+    /* Locate gmail editor mask */
+    const gmailEditorMask = document.querySelector(".aSs");
 
     if (gmailEditorMask) {
-        // Observing the .aSs target
+        /* Observing the .aSs target */
         gmailEditorMaskObserver(gmailEditorMask, config);
     } else {
-        // Create an observer instance linked to the callback function
+        /* Create an observer instance linked to the callback function */
         const bodyObserver = new MutationObserver((mutationList, observer) => {
             for (const mutation of mutationList) {
                 if (mutation.type === 'childList' && mutation.target.classList.contains('aSs')) {
-                    // Observing the .aSs target
+                    /* Observing the .aSs target */
                     gmailEditorMaskObserver(mutation.target, config);
                 }
             }
         });
 
-        // Start observing the target node for configured mutations
+        /* Start observing body tag for configured mutations */
         bodyObserver.observe(body, config);
     }
 })();
