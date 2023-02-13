@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Gmail HTML 填寫工具
-// @version      0.2.9
+// @version      0.3.0
 // @description  A simple Gmail HTML inserter
 // @license      GPL
 // @source       https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/src/GmailHTMLInserter.js
@@ -16,7 +16,7 @@
     'use strict';
 
     /* Current version */
-    const VERSION = '0.2.9';
+    const VERSION = '0.3.0';
 
     /* Create style sheet */
     const styleSheet = `
