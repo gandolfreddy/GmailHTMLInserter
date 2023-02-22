@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Gmail HTML 填寫工具
-// @version      0.3.3
+// @version      0.3.4
 // @description  A simple Gmail HTML inserter
 // @license      GPL
 // @source       https://github.com/gandolfreddy/GmailHTMLInserter/raw/main/src/GmailHTMLInserter.js
@@ -16,7 +16,7 @@
     'use strict';
 
     /* Current version */
-    const VERSION = '0.3.3';
+    const VERSION = '0.3.4';
 
     /* Create style sheet */
     const styleSheet = `
@@ -220,7 +220,7 @@
                         HTMLInserterMask.style.visibility = 'inherit';
 
                         const gmailContent = activeEditorFrame.querySelector('[role="textbox"]');
-                        if (gmailContent.querySelector('div').id.includes('customized-content')) {
+                        if (gmailContent.querySelector('div')?.id.includes('customized-content')) {
                             gmailContent.querySelector('div').id = 'customized-content';
                             HTMLContent.value = gmailContent.querySelector('#customized-content').innerHTML;
                         } else {
