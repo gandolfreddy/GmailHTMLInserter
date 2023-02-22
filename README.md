@@ -1,6 +1,6 @@
-# Gmail HTML 填寫工具
+# Gmail HTML 填寫工具 Gmail HTML Inserter
 
-A simple Gmail HTML inserter
+一個簡易的 Gmail HTML 填入工具。A simple Gmail HTML inserter.
 
 ## 安裝流程
 
@@ -17,11 +17,14 @@ A simple Gmail HTML inserter
 
 ## 操作畫面示範
 
-[此處加入 GIF]()
+1. 當工具程式載入時，會出現相關提示視窗。
+  ![image](https://user-images.githubusercontent.com/22278312/218553502-8161d7a8-68cc-4069-9e99-af26a9b3b6f8.png)
 
+2. 基礎操作如下所示，需將信件撰寫視窗放大至最大，才能首次載入 HTML 填寫工具按鈕。
+  ![GmailHTMLInserter](https://user-images.githubusercontent.com/22278312/218556871-6b910310-0857-4102-ab80-ad41d8615510.gif)
 ---
 
-## 實驗記錄
+## 個人實驗記錄
 
 - 需要將程式碼檔案，命名為 `*.user.js`，才能觸發 Tampermonkey 的自動安裝與更新機制。
 
