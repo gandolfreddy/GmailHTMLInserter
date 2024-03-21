@@ -33,3 +33,4 @@
 - [MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
 - [Tampermonkey - documentation](https://www.tampermonkey.net/documentation.php#meta:downloadURL)
 - [Will 保哥 - doggy8088/TampermonkeyUserscripts](https://github.com/doggy8088/TampermonkeyUserscripts/)
+- [TrustedHTML](https://developer.mozilla.org/en-US/docs/Web/API/TrustedHTML)
