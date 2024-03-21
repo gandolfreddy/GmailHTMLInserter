@@ -185,6 +185,9 @@
                     const escapeHTMLPolicy = trustedTypes.createPolicy("myEscapePolicy", {
                         createHTML: (string) => string.replace(/</g, "&lt;"),
                     });
+                    const contentHTMLPolicy = trustedTypes.createPolicy("myContentPolicy", {
+                        createHTML: (string) => string,
+                    });
                     /* example:
                      * const el = document.createElement('div');
                      * const escaped = escapeHTMLPolicy.createHTML("<img src=x onerror=alert(1)>");
@@ -251,7 +254,7 @@
 
                     insertBtn.addEventListener('click', function () {
                         const customizedContent = activeEditorFrame.querySelector('[role="textbox"]').querySelector('#customized-content');
-                        const htmlContentValueAsHTML = escapeHTMLPolicy.createHTML(HTMLContent.value);
+                        const htmlContentValueAsHTML = contentHTMLPolicy.createHTML(HTMLContent.value);
                         customizedContent.innerHTML = htmlContentValueAsHTML;
                         HTMLContent.value = '';
                         HTMLInserterMask.style.visibility = 'hidden';
