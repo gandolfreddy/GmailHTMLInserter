@@ -151,7 +151,7 @@
     `;
     const s = document.createElement('style');
     s.type = 'text/css';
-    s.innerHTML = styleSheet;
+    s.textContent = styleSheet;
     (document.head || document.documentElement).appendChild(s);
 
     /* Observer for gmail editor mask's change */
