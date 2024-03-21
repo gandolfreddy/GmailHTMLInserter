@@ -181,6 +181,16 @@
                     HTMLInserterBtn.className = 'html-inserter-btn';
                     tds[tds.length - 2].appendChild(HTMLInserterBtn);
 
+                    /* Create TrustedHTML policy */
+                    const escapeHTMLPolicy = trustedTypes.createPolicy("myEscapePolicy", {
+                        createHTML: (string) => string.replace(/</g, "&lt;"),
+                    });
+                    /* example:
+                     * const el = document.createElement('div');
+                     * const escaped = escapeHTMLPolicy.createHTML("<img src=x onerror=alert(1)>");
+                     * el.innerHTML = escaped;
+                     */
+
                     /* Create html inserter UI */
                     const HTMLInserterMask = document.createElement('div');
                     HTMLInserterMask.className = 'html-inserter-mask';
@@ -190,7 +200,8 @@
                     const HTMLInserterEditorTitle = document.createElement('div');
                     HTMLInserterEditorTitle.className = 'html-inserter-editor-title';
                     const closeBtn = document.createElement('button');
-                    closeBtn.innerHTML = `×`;
+                    const closeBtnInnerHTML = escapeHTMLPolicy.createHTML(`×`);
+                    closeBtn.innerHTML = closeBtnInnerHTML;
                     closeBtn.className = 'close-btn';
 
                     const HTMLInserterEditorContainer = document.createElement('div');
@@ -203,7 +214,8 @@
                     const HTMLInserterEditorFooter = document.createElement('div');
                     HTMLInserterEditorFooter.className = 'html-inserter-editor-footer';
                     const insertBtn = document.createElement('button');
-                    insertBtn.innerHTML = `插入 HTML`;
+                    const insertBtnInnerHTML = escapeHTMLPolicy.createHTML(`插入 HTML`);
+                    insertBtn.innerHTML = insertBtnInnerHTML;
                     insertBtn.className = 'send-btn';
 
                     HTMLInserterEditorTitle.appendChild(closeBtn);
@@ -239,7 +251,8 @@
 
                     insertBtn.addEventListener('click', function () {
                         const customizedContent = activeEditorFrame.querySelector('[role="textbox"]').querySelector('#customized-content');
-                        customizedContent.innerHTML = HTMLContent.value;
+                        const htmlContentValueAsHTML = escapeHTMLPolicy.createHTML(HTMLContent.value);
+                        customizedContent.innerHTML = htmlContentValueAsHTML;
                         HTMLContent.value = '';
                         HTMLInserterMask.style.visibility = 'hidden';
                     });
