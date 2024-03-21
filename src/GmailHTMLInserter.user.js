@@ -190,7 +190,7 @@
                     const HTMLInserterEditorTitle = document.createElement('div');
                     HTMLInserterEditorTitle.className = 'html-inserter-editor-title';
                     const closeBtn = document.createElement('button');
-                    closeBtn.innerHTML = `×`;
+                    closeBtn.textContent = `×`;
                     closeBtn.className = 'close-btn';
 
                     const HTMLInserterEditorContainer = document.createElement('div');
@@ -203,7 +203,7 @@
                     const HTMLInserterEditorFooter = document.createElement('div');
                     HTMLInserterEditorFooter.className = 'html-inserter-editor-footer';
                     const insertBtn = document.createElement('button');
-                    insertBtn.innerHTML = `插入 HTML`;
+                    insertBtn.textContent = `插入 HTML`;
                     insertBtn.className = 'send-btn';
 
                     HTMLInserterEditorTitle.appendChild(closeBtn);
@@ -239,7 +239,7 @@
 
                     insertBtn.addEventListener('click', function () {
                         const customizedContent = activeEditorFrame.querySelector('[role="textbox"]').querySelector('#customized-content');
-                        customizedContent.innerHTML = HTMLContent.value;
+                        customizedContent.textContent = HTMLContent.value;
                         HTMLContent.value = '';
                         HTMLInserterMask.style.visibility = 'hidden';
                     });
